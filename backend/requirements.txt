@@ -1,0 +1,47 @@
+fastapi==0.109.0
+uvicorn==0.27.0
+langchain==0.1.14
+# Pulled in explicitly: the `Ollama` LLM class lives here, not in `langchain`.
+# 0.0.31 is the release that pairs with langchain 0.1.14 / langchain-core 0.1.53.
+langchain-community==0.0.31
+langgraph==0.0.40
+python-dotenv==1.0.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+chromadb==0.4.24
+# Was 2.2.2, which imports `cached_download` — removed from huggingface_hub
+# >=0.26, so it cannot be installed alongside a modern hub. 2.7.0 is the
+# closest version that works.
+sentence-transformers==2.7.0
+# chromadb 0.4.24 references np.float_, which NumPy 2.0 removed.
+numpy==1.26.4
+PyPDF2==3.0.1
+python-multipart==0.0.6
+# Job discovery fetches public APIs and RSS feeds. `requests` already arrived
+# as a transitive dependency of the LangChain stack, but relying on that is a
+# trap: the day LangChain drops it, job discovery breaks with an ImportError
+# and nothing in this file explains why. We import it directly, so we pin it
+# directly.
+requests==2.32.5
+# Optional: only needed if you want the Claude fallback. Without it (and
+# without ANTHROPIC_API_KEY) the agents run their deterministic path instead.
+# anthropic==0.34.2
+# Gemini deliberately has no entry here. `google-genai` requires httpx>=0.28.1,
+# and Starlette 0.35 (pinned by FastAPI 0.109) builds its test client on the
+# httpx.Client(app=...) argument that 0.28 removed -- installing the SDK turned
+# 9 tests red without touching application code. It also drops Python 3.9,
+# which is the only interpreter here. GeminiHandler uses `requests` instead.
+# The Ollama daemon is reached over plain HTTP via langchain-community, so the
+# `ollama` client package is never imported. Uncomment only if you want the
+# Python client for pulling models from a script.
+# ollama==0.1.0
+# `cors` is deliberately absent: CORS comes from Starlette's CORSMiddleware,
+# which ships with FastAPI. The PyPI package of that name is unrelated.
+
+# --- Development only -------------------------------------------------------
+# Not needed to run the server. `pytest` runs the suite; `httpx` backs both
+# FastAPI's TestClient and `test_api.py`, which drives the app over a real
+# socket. Without these a fresh clone can install the app but not test it.
+pytest==8.3.4
+httpx==0.27.2
+# ruff==0.16.5   # linting, used for the dead-code sweep

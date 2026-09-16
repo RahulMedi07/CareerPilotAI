@@ -1,0 +1,410 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Native UI faces rather than a downloaded one. On a Mac this is SF Pro, on
+     Windows Segoe UI -- so the app reads as something that belongs on the
+     machine instead of something poured into a template. It also costs no
+     network request, which matters for an app that promises the CV never
+     leaves the laptop. The Geist variables layout.tsx still injects are kept
+     at the end as a harmless fallback. */
+  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, var(--font-geist-sans), sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", var(--font-geist-mono), monospace;
+  --font-heading: var(--font-sans);
+
+  /* Page titles only. A book serif against the UI sans is the oldest pairing
+     in print, and for a CV tool it echoes the document the app is about. */
+  --font-display: Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype",
+    Palatino, Georgia, ui-serif, serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* Paper, ink and a single considered accent.
+   ---------------------------------------------------------------------------
+   What was here before was the stock palette: pure #fff on pure #000 with
+   every colour at zero chroma, which is why the only colour in the app was
+   the blue-to-purple gradient bolted onto the headings. Grey plus one neon
+   gradient is the house style of a generated template.
+
+   So: a warm off-white that reads as paper rather than a lightbox, warm ink
+   instead of black, and one restrained accent -- a deep pine green -- used
+   for the things you can act on. The dark theme is a warm charcoal for the
+   same reason; true black is a screen artefact, not a colour anyone chooses. */
+:root {
+  --background: oklch(0.982 0.005 91);
+  --foreground: oklch(0.232 0.013 71);
+  --card: oklch(0.996 0.002 91);
+  --card-foreground: oklch(0.232 0.013 71);
+  --popover: oklch(0.996 0.002 91);
+  --popover-foreground: oklch(0.232 0.013 71);
+  --primary: oklch(0.427 0.058 169);
+  --primary-foreground: oklch(0.982 0.005 91);
+  --secondary: oklch(0.95 0.009 91);
+  --secondary-foreground: oklch(0.289 0.014 71);
+  --muted: oklch(0.95 0.009 91);
+  --muted-foreground: oklch(0.518 0.017 71);
+  --accent: oklch(0.93 0.014 91);
+  --accent-foreground: oklch(0.289 0.014 71);
+  --destructive: oklch(0.509 0.147 28);
+  --border: oklch(0.889 0.01 91);
+  --input: oklch(0.889 0.01 91);
+  --ring: oklch(0.427 0.058 169);
+  /* Pine, clay, gold, slate and plum: five hues that sit together because
+     they share a chroma, not five points around a colour wheel. */
+  --chart-1: oklch(0.427 0.058 169);
+  --chart-2: oklch(0.564 0.101 47);
+  --chart-3: oklch(0.682 0.091 82);
+  --chart-4: oklch(0.491 0.06 254);
+  --chart-5: oklch(0.453 0.072 330);
+  /* 0.625rem is the shadcn default and reads as a template. Tighter corners
+     look drawn rather than dialled in. */
+  --radius: 0.4rem;
+  --sidebar: oklch(0.963 0.007 91);
+  --sidebar-foreground: oklch(0.232 0.013 71);
+  --sidebar-primary: oklch(0.427 0.058 169);
+  --sidebar-primary-foreground: oklch(0.982 0.005 91);
+  --sidebar-accent: oklch(0.93 0.014 91);
+  --sidebar-accent-foreground: oklch(0.289 0.014 71);
+  --sidebar-border: oklch(0.889 0.01 91);
+  --sidebar-ring: oklch(0.427 0.058 169);
+}
+
+.dark {
+  --background: oklch(0.218 0.009 71);
+  --foreground: oklch(0.931 0.007 91);
+  --card: oklch(0.259 0.01 71);
+  --card-foreground: oklch(0.931 0.007 91);
+  --popover: oklch(0.259 0.01 71);
+  --popover-foreground: oklch(0.931 0.007 91);
+  --primary: oklch(0.731 0.081 169);
+  --primary-foreground: oklch(0.201 0.021 169);
+  --secondary: oklch(0.318 0.011 71);
+  --secondary-foreground: oklch(0.931 0.007 91);
+  --muted: oklch(0.318 0.011 71);
+  --muted-foreground: oklch(0.719 0.012 91);
+  --accent: oklch(0.342 0.013 71);
+  --accent-foreground: oklch(0.931 0.007 91);
+  --destructive: oklch(0.652 0.141 28);
+  --border: oklch(1 0 0 / 11%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.731 0.081 169);
+  --chart-1: oklch(0.731 0.081 169);
+  --chart-2: oklch(0.724 0.098 47);
+  --chart-3: oklch(0.795 0.089 82);
+  --chart-4: oklch(0.681 0.076 254);
+  --chart-5: oklch(0.671 0.079 330);
+  --sidebar: oklch(0.191 0.009 71);
+  --sidebar-foreground: oklch(0.931 0.007 91);
+  --sidebar-primary: oklch(0.731 0.081 169);
+  --sidebar-primary-foreground: oklch(0.201 0.021 169);
+  --sidebar-accent: oklch(0.342 0.013 71);
+  --sidebar-accent-foreground: oklch(0.931 0.007 91);
+  --sidebar-border: oklch(1 0 0 / 11%);
+  --sidebar-ring: oklch(0.731 0.081 169);
+}
+
+/* The status colours, toned down at the source.
+   ---------------------------------------------------------------------------
+   Green for a good match, amber for caution, red for a problem: those meanings
+   are set in the components and are none of this file's business. What *is*
+   this file's business is that they arrived at full stock saturation, and four
+   or five of them on one screen is the thing that makes a page look generated.
+
+   Overriding the palette variables here re-tints every existing `text-red-600`
+   and `bg-amber-50` in the app at once, so the components keep saying exactly
+   what they said before, in a quieter voice. Chroma is roughly halved; the
+   hues are nudged warm to sit on the paper background. Only the shades the app
+   actually uses are listed. */
+@theme {
+  --color-green-50: oklch(0.97 0.021 158);
+  --color-green-200: oklch(0.876 0.051 158);
+  --color-green-300: oklch(0.807 0.072 158);
+  --color-green-400: oklch(0.719 0.091 160);
+  --color-green-500: oklch(0.632 0.099 162);
+  --color-green-600: oklch(0.531 0.092 163);
+  --color-green-700: oklch(0.449 0.078 164);
+  --color-green-900: oklch(0.302 0.051 165);
+  --color-green-950: oklch(0.218 0.039 166);
+
+  --color-emerald-50: oklch(0.969 0.021 168);
+  --color-emerald-200: oklch(0.871 0.053 168);
+  --color-emerald-300: oklch(0.801 0.075 169);
+  --color-emerald-400: oklch(0.715 0.092 170);
+  --color-emerald-600: oklch(0.529 0.091 171);
+  --color-emerald-800: oklch(0.371 0.065 172);
+  --color-emerald-900: oklch(0.301 0.052 173);
+  --color-emerald-950: oklch(0.216 0.04 174);
+
+  --color-amber-50: oklch(0.976 0.022 88);
+  --color-amber-200: oklch(0.893 0.062 84);
+  --color-amber-300: oklch(0.841 0.081 82);
+  --color-amber-400: oklch(0.782 0.099 78);
+  /* Amber is the one hue that cannot be both bright and legible. Stock
+     amber-500 under white text sits at 2.5:1, and amber-600 on paper at 3.5:1
+     -- so "caution" was the one status you could not actually read. Both are
+     pulled down to an ochre that clears 4.5:1. */
+  --color-amber-500: oklch(0.565 0.103 62);
+  --color-amber-600: oklch(0.53 0.098 60);
+  --color-amber-800: oklch(0.421 0.071 62);
+  --color-amber-900: oklch(0.342 0.058 62);
+  --color-amber-950: oklch(0.231 0.041 62);
+
+  --color-red-50: oklch(0.971 0.018 22);
+  --color-red-200: oklch(0.883 0.049 22);
+  --color-red-300: oklch(0.819 0.071 23);
+  --color-red-400: oklch(0.709 0.109 24);
+  --color-red-600: oklch(0.541 0.149 25);
+  --color-red-700: oklch(0.471 0.131 25);
+  --color-red-900: oklch(0.321 0.083 25);
+  --color-red-950: oklch(0.223 0.058 25);
+
+  --color-blue-100: oklch(0.931 0.029 245);
+  --color-blue-300: oklch(0.801 0.065 246);
+  --color-blue-400: oklch(0.701 0.083 247);
+  --color-blue-500: oklch(0.609 0.096 248);
+  --color-blue-600: oklch(0.518 0.093 249);
+  --color-blue-700: oklch(0.441 0.083 250);
+  --color-blue-950: oklch(0.231 0.045 250);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+
+  /* Page titles in the display serif. The dashboard pages get this through
+     `.gradient-text`, which sits on their headings already; the sign-in and
+     sign-up pages do not use that class, and without this rule they would be
+     the only two titles in the app set in the UI face. */
+  h1 {
+    font-family: var(--font-display);
+    letter-spacing: -0.005em;
+  }
+
+  /* ------------------------------------------------------------------------
+     Dark mode polish.
+
+     Deliberately *not* here, from the part 6 brief:
+
+     `* { transition: color, background-color 200ms }` — a transition on every
+     element in the document. It fights `disableTransitionOnChange` on the
+     ThemeProvider (which exists to stop the whole page smearing when the
+     theme flips), it overrides the scoped transitions `.card-hover` declares
+     below, and it is invisible to the `prefers-reduced-motion` block at the
+     end of this file.
+
+     `input:focus { outline-none; ring-2 }` — `:focus`, not `:focus-visible`,
+     so a ring appears on mouse clicks too; `outline-none` removes the only
+     focus cue that survives Windows High Contrast Mode; and it overrides the
+     `aria-invalid` ring that shadcn's input.tsx uses to mark a bad field, so
+     valid and invalid inputs would look identical. The primitives already
+     handle focus correctly.
+
+     `.dark { color-scheme: dark }` — next-themes sets `color-scheme` on the
+     <html> element itself (`enableColorScheme` defaults to true), and an
+     inline style beats a class rule regardless.
+     ------------------------------------------------------------------------ */
+
+  /* Standard property first; the -webkit- rules below are the fallback for
+     Chrome and Safari, which still do not implement it. Both are driven by
+     the theme variables, so light mode gets a matching treatment instead of
+     being left on the browser default. */
+  html {
+    scrollbar-color: var(--border) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+
+  /* `--primary` inverts between themes, so the pair stays legible in both
+     without a second rule. A hardcoded blue would not. */
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+/* ==========================================================================
+   CareerPilot AI project utilities
+   --------------------------------------------------------------------------
+   Written as plain CSS rather than @apply. Tailwind v4 renamed the gradient
+   utilities (bg-gradient-to-r -> bg-linear-to-r) and keeps the old spelling
+   only as a compatibility alias, so composing them here would tie this file
+   to a deprecation. The theme's colour variables are stable in both versions.
+
+   The dark rules are spelled out with an explicit `.dark` ancestor because
+   the `dark` custom variant declared at the top of this file is scoped to
+   descendants of `.dark`, which is exactly what these selectors express.
+   ========================================================================== */
+
+@layer utilities {
+  /* Named `gradient-text` because every page title in the app already calls
+     it, and the class name is not worth a sweep through eleven files to
+     rename. It is no longer a gradient. It was blue-to-purple clipped to the
+     text -- the single most recognisable mark of a generated interface, and
+     it sat on the logo and on all ten page headings at once.
+
+     What it does now is set page titles in the display serif against solid
+     ink. The colour carries no meaning, so it should not be shouting. */
+  .gradient-text {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--foreground);
+    background-image: none;
+    -webkit-text-fill-color: currentColor;
+  }
+
+  /* A hairline of the accent under the logo, which is the one place a mark of
+     identity is wanted. Matched on the anchor rather than on `header`, because
+     the pages wrap their own title blocks in `<header>` too and this would
+     otherwise shrink and underline every heading in the app. */
+  header a .gradient-text {
+    font-size: 1.0625rem;
+    letter-spacing: 0.01em;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 1px;
+  }
+
+  /* Was a 2px lift plus a 24px shadow on every card. Lifting things off the
+     page on hover is decoration pretending to be feedback; a card that only
+     opens a detail view does not need to jump. A slightly firmer border and a
+     shadow you have to look for say the same thing quietly. */
+  .card-hover {
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .card-hover:hover {
+    border-color: color-mix(in oklab, var(--foreground) 20%, var(--border));
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 6px 16px -12px rgb(0 0 0 / 0.18);
+  }
+
+  .dark .card-hover:hover {
+    border-color: color-mix(in oklab, var(--foreground) 28%, var(--border));
+    box-shadow: none;
+  }
+
+  /* Frosted glass is another template signature, and this one was never used
+     by a single component. Left defined so nothing breaks if it is reached
+     for, but as an ordinary panel. */
+  .glass {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+  }
+
+  .animate-slide-in-up {
+    animation: slideInUp 260ms ease-out both;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 220ms ease-out both;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Movement is decoration here, never the only way information is conveyed,
+   so it is safe to switch off entirely for anyone who has asked for that.
+
+   Smooth scrolling is enabled inside `no-preference` rather than declared
+   unconditionally and then unset: `scroll-behavior: smooth` is one of the
+   settings most likely to cause nausea, and opting in is the safer default
+   for a rule that also affects programmatic scrolling. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-hover,
+  .animate-slide-in-up,
+  .animate-fade-in {
+    transition: none;
+    animation: none;
+  }
+}

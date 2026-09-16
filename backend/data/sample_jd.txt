@@ -1,0 +1,32 @@
+AI/ML Engineer - Bangalore
+
+About the role:
+We're looking for an AI/ML Engineer to build autonomous agents and RAG systems.
+
+Required Skills:
+- Python (3+ years)
+- LangChain & LangGraph
+- RAG systems and embeddings
+- Vector databases (Chroma, Pinecone)
+- REST APIs
+- SQL and databases
+- Git and CI/CD
+
+Nice to have:
+- MCP (Model Context Protocol)
+- FastAPI
+- React/Next.js
+- Docker
+
+Experience:
+- 3-5 years in software development
+- 1+ year with LLMs
+- Experience with AI frameworks
+
+Education:
+- Bachelor's in CS or related field
+
+Soft Skills:
+- Communication
+- Problem-solving
+- Team player

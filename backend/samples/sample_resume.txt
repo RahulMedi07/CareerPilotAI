@@ -1,0 +1,50 @@
+Priya Raman
+San Francisco, CA | priya.raman@example.com | +1 (555) 214-8890
+github.com/priyaraman | linkedin.com/in/priyaraman
+
+Summary
+-------
+Backend and machine learning engineer with 6 years of experience building
+production Python services. The last three years have been spent on LLM
+applications: retrieval pipelines, agent orchestration and evaluation harnesses.
+Comfortable owning a feature from design through to on-call.
+
+Skills
+------
+Languages:      Python, SQL, Go, TypeScript
+Frameworks:     FastAPI, Flask, LangChain, LangGraph, PyTorch
+Data:           PostgreSQL, Redis, ChromaDB, pgvector, Elasticsearch
+Infrastructure: Docker, AWS (ECS, S3, Lambda), GitHub Actions, Terraform
+Practices:      Test-driven development, code review, technical writing
+
+Experience
+----------
+Senior Software Engineer, Helio Systems - 2022 to present
+- Built a retrieval augmented generation assistant over 400,000 support tickets.
+  Designed the chunking strategy and cut hallucinated answers by 60 percent as
+  measured by a human-labelled eval set of 1,200 questions.
+- Migrated the inference service to FastAPI with async endpoints, bringing p95
+  latency from 2.1 s down to 640 ms.
+- Ran the embedding pipeline on ChromaDB, then moved it to pgvector when the
+  corpus outgrew a single node.
+- Mentored three junior engineers through their first six months. Two were
+  promoted.
+- Wrote the team's prompt engineering guide, now used across four teams.
+
+Software Engineer, Bright Ledger - 2019 to 2022
+- Developed and maintained Python microservices handling 2 million requests a
+  day on AWS.
+- Introduced Docker to the team and containerised eleven legacy services.
+- Built the internal reporting API on PostgreSQL, tuning the slowest queries
+  from 12 s to under 400 ms.
+- Presented architecture decisions to non-technical stakeholders each quarter.
+
+Projects
+--------
+- open-rag-eval: an open source harness for scoring retrieval quality. 700 stars.
+- Ran Mistral locally with Ollama to benchmark on-device inference against a
+  hosted API for a cost write-up that was widely shared internally.
+
+Education
+---------
+B.S. Computer Science, University of Illinois Urbana-Champaign, 2019

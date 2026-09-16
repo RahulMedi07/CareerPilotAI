@@ -1,0 +1,45 @@
+RAHUL SHARMA
+
+PROFESSIONAL SUMMARY:
+AI/ML Developer with 2+ years experience in building AI systems using Python, LangChain, and RAG.
+
+SKILLS:
+- Python, FastAPI, REST APIs
+- LangChain, RAG, Embeddings
+- Chroma, FAISS, Vector databases
+- React, Next.js, Tailwind CSS
+- PostgreSQL, SQLite
+- Git, GitHub
+- Docker basics
+
+EXPERIENCE:
+
+Junior AI Developer - TechCorp (2023-Present)
+- Built RAG system with LangChain
+- Implemented embeddings pipeline
+- Created REST APIs with FastAPI
+- Worked with Chroma vector database
+
+Intern - AI Startup (2022-2023)
+- Python development
+- API integration
+- Learned LLM basics
+
+PROJECTS:
+
+1. Document Q&A System
+   - Built with LangChain + RAG
+   - Used Chroma for vector storage
+   - FastAPI backend
+   - React frontend
+
+2. Job Matching Algorithm
+   - Python implementation
+   - Embeddings-based matching
+   - 85% accuracy
+
+EDUCATION:
+Bachelor's in Computer Science (2022)
+
+CERTIFICATIONS:
+- AI & ML Fundamentals

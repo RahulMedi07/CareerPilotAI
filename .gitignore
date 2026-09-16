@@ -1,0 +1,25 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Node.js / Next.js (covered by frontend/.gitignore too, but listed here for
+# tools that only read the root ignore file and for Drive-sharing awareness)
+node_modules/
+.next/
+.npm/
+
+# Runtime data: uploads, the vector store, logs. Note the trailing /* rather
+# than a plain backend/data/ -- git cannot re-include a file whose parent
+# directory is excluded, so excluding the *contents* is what lets the two
+# sample fixtures below be tracked.
+backend/data/*
+!backend/data/sample_jd.txt
+!backend/data/sample_resume.txt
+
+# Report written by `python test_complete_workflow.py` on every run. It is
+# output, not source, and it changes whenever the sample data or the scoring
+# does -- committing it would produce a diff on every demo run.
+backend/results.txt

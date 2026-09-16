@@ -1,0 +1,50 @@
+Senior AI Engineer
+Northwind Labs - Remote (US / EU timezones)
+
+About the role
+--------------
+We are building an AI assistant that reads a company's internal documents and
+answers questions about them with citations. You will own the retrieval layer
+and the agent orchestration end to end: choosing how documents are chunked and
+embedded, deciding when the model should search versus answer directly, and
+making the whole thing fast enough to feel instant.
+
+You will work directly with the founding engineers. There is no dedicated ML
+platform team, so you should be comfortable owning your work all the way to
+production.
+
+What you will do
+----------------
+- Design and ship retrieval augmented generation (RAG) pipelines over a large,
+  messy document corpus.
+- Build multi-step agent workflows with LangChain and LangGraph.
+- Serve models behind a FastAPI service and keep p95 latency under 800 ms.
+- Containerise everything with Docker and deploy to Kubernetes on AWS.
+- Evaluate retrieval quality with real metrics, not vibes. Own the eval harness.
+- Mentor two junior engineers and review their pull requests.
+
+Requirements
+------------
+- 5+ years of professional software engineering experience, at least 2 of them
+  building production machine learning or LLM systems.
+- Strong Python. You should be comfortable in an async codebase.
+- Hands-on experience with FastAPI, LangChain and a vector database such as
+  Chroma, Pinecone or pgvector.
+- Solid grasp of embeddings, chunking strategies and prompt design.
+- Docker and Kubernetes in production.
+- PostgreSQL, including how to read a query plan.
+- Bachelor's degree in Computer Science or equivalent practical experience.
+- Excellent written communication. We are remote and we write things down.
+
+Nice to have
+------------
+- Experience with Ollama or another local inference runtime.
+- Redis for caching.
+- Terraform.
+- Open source contributions to the LLM tooling ecosystem.
+- Experience mentoring or leading a small team.
+
+What we offer
+-------------
+Competitive salary, meaningful equity, fully remote, and a hardware budget.
+We are a 30-person startup that has raised a Series A.
