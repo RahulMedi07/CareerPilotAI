@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^Get-ChildItem -Force; Write-Host '---'; python --version; node --version; npm --version; Write-Host '---'; Get-ChildItem backend -Force \\| Select-Object Name; Write-Host '---'; Get-ChildItem frontend -Force \\| Select-Object Name$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
